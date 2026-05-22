@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutas Seguras Kids</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+   <header class="hero">
+
+    <div class="header-top">
+
+        <div>
+            <h1>Rutas Seguras Kids</h1>
+
+            <p>
+                Sistema de gestión de rutas escolares para organizar buses,
+                conductores y estudiantes de manera rápida y sencilla.
+            </p>
+        </div>
+
+        <!-- CLIMA -->
+        <div class="clima-box">
+
+            <h3>Clima</h3>
+            <img id="iconoClima" alt="Icono del clima">
+            <p id="temperatura">Cargando...</p>
+            <p id="descripcionClima"></p>
+
+        </div>
+
+    </div>
+
+    </header>
+
+   
+            
+    
+    <!-- FORMULARIOS -->
+   
+    <section class="formularios-container">
+
+        <!-- FORMULARIO RUTAS -->
+
+
+        <section class="form-card">
+           
+            <h2>Crear Ruta</h2>
+
+        <input 
+            type="text" 
+            id="nombreRuta" 
+            placeholder="Nombre de la ruta"
+        >
+
+        <input 
+            type="text" 
+            id="conductor" 
+            placeholder="Nombre del conductor"
+        >
+
+        <input 
+            type="time" 
+            id="horaSalida"
+        >
+
+        <input 
+            type="text" 
+            id="ciudad" 
+            placeholder="Ciudad"
+        >
+
+        <button id="btnCrearRuta">
+            Crear Ruta
+        </button>
+
+        </section>
+
+        <!-- FORMULARIO ESTUDIANTES -->
+         
+        <section class="form-card">
+
+                
+               <h2>Agregar Estudiante</h2>
+
+    <input 
+        type="text" 
+        id="nombreEstudiante" 
+        placeholder="Nombre del estudiante"
+    >
+
+    <input 
+        type="text" 
+        id="grado" 
+        placeholder="Grado"
+    >
+
+    <input 
+        type="text" 
+        id="telefono" 
+        placeholder="Telefono"
+    >
+
+    <select id="selectRuta">
+        <option value="" disabled selected>
+            seleccione una ruta
+        </option>
+    </select>
+
+    <button id="btnAgregarEstudiante">
+        Agregar Estudiante
+    </button>
+
+
+                
+        </section>
+
+    </section>
+    
+    <!-- CARDS DE RUTAS -->
+
+    <section class="rutas-section">
+
+        <h2>Rutas Registradas</h2>
+
+        <div id="contenedorRutas" class="contenedor-rutas">
+
+          
+        </div>
+
+     <!-- TEMPLATE DE ESTUDIANTES-->
+
+<template id="templateEstudiante">
+
+    <div class="card-estudiante">
+
+        <div class="datos-estudiante">
+
+            <h3 class="nombre-estudiante">
+                Juan Pérez
+            </h3>
+            <p class="detalle-estudiante">
+                Ruta: Ruta Norte
+            </p>
+            <p class="detalle-estudiante">
+                Grado: 5°
+            </p>
+
+            <p class="detalle-estudiante">
+                Hora de salida: 06:30 AM
+            </p>
+
+        </div>
+
+        <div class="botones-estudiante">
+
+            <button class="editar-estudiante">
+                Editar
+            </button>
+
+            <button class="eliminar-estudiante">
+                ✕
+            </button>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+
+    <!-- FORMULARIO EDITAR RUTAS-->
+
+        <div id="modalEditarRuta" class="modal-editar-ruta">
+
+        <div class="contenido-editar-ruta form-card">
+
+            <h2>Editar Ruta</h2>
+
+            <input 
+                type="text" 
+                id="editarNombreRuta" 
+                placeholder="Nombre de la ruta"
+            >
+
+            <input 
+                type="text" 
+                id="editarConductorRuta" 
+                placeholder="Nombre del conductor"
+            >
+
+            <input 
+                type="time" 
+                id="editarHoraRuta"
+            >
+
+            <input 
+                type="text" 
+                id="editarCiudadRuta" 
+                placeholder="Ciudad"
+            >
+
+            <div class="acciones-editar-ruta">
+
+                <button id="guardarCambiosRuta">
+                    Guardar cambios
+                </button>
+
+                <button 
+                    id="cerrarModalRuta"
+                    class="btn-cancelar-ruta"
+                >
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- FORMULARIO EDITAR ESTUDIANTES-->
+
+        <div id="modalEditarEstudiante" class="modal-editar-estudiante">
+
+        <div class="contenido-editar-estudiante form-card">
+
+            <h2>Editar Estudiante</h2>
+
+            <input 
+                type="text" 
+                id="editarNombreEstudiante" 
+                placeholder="Nombre del estudiante"
+            >
+
+            <input 
+                type="text" 
+                id="editarGradoEstudiante" 
+                placeholder="Grado"
+            >
+
+            <input 
+                type="text" 
+                id="editarTelefonoEstudiante" 
+                placeholder="Telefono"
+            >
+
+            <div class="acciones-editar-estudiante">
+
+                <button id="guardarCambiosEstudiante">
+                    Guardar cambios
+                </button>
+
+                <button 
+                    id="cerrarModalEstudiante"
+                    class="btn-cancelar-estudiante"
+                >
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
