@@ -264,6 +264,13 @@ btnAgregarEstudiante.addEventListener("click",()=>{
         return;
     }
 
+    const soloNumeros = /^\d+$/;
+
+    if(!soloNumeros.test(grado.value)){
+        alert("El grado solo puede contener números");
+        return;
+    }
+
     const gradoNumero = Number(grado.value);
 
     if(gradoNumero < 1 || gradoNumero > 11){
@@ -673,6 +680,13 @@ guardarCambiosEstudiante.addEventListener("click", () => {
         alert("El nombre solo puede contener letras");
         return;
     };
+
+    const soloNumeros = /^\d+$/;
+
+    if(!soloNumeros.test(grado.value)){
+        alert("El grado solo puede contener números");
+        return;
+    }
 
     const gradoNumero = Number(editarGradoEstudiante.value);
 
