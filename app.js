@@ -1,7 +1,16 @@
 "use strict"
 
+// =============================
+// LOCAL STORAGE
+// =============================
+
 let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
 let rutas = JSON.parse(localStorage.getItem("rutas")) || [];
+
+
+// =============================
+// FUNCION PARA GUARDAR DATOS
+// =============================
 
 function guardarDatos(){
     localStorage.setItem("estudiantes" , JSON.stringify(estudiantes));  
@@ -10,7 +19,7 @@ function guardarDatos(){
 }
 
 
-//Formulario de RUTAS
+//Formulario de RUTAS DOM 
 
 const nombreRuta = document.getElementById("nombreRuta");
 const nombreConductor = document.getElementById("conductor");
@@ -19,7 +28,7 @@ const ciudad = document.getElementById("ciudad");
 const crearRuta = document.getElementById("btnCrearRuta");
 const contenedorRutas= document.getElementById("contenedorRutas");
 
-//Formulario de ESTUDIANTES
+//Formulario de ESTUDIANTES DOM
 
 const nombreEstudiante = document.getElementById("nombreEstudiante");
 const grado = document.getElementById("grado");
@@ -28,7 +37,7 @@ const selectRuta = document.getElementById("selectRuta");
 const btnAgregarEstudiante = document.getElementById("btnAgregarEstudiante");
 
 
-//Formulario EDITAR RUTAS
+//Formulario EDITAR RUTAS DOM
 
 const modalEditarRuta=document.getElementById("modalEditarRuta");
 const editarNombreRuta=document.getElementById("editarNombreRuta");
@@ -52,11 +61,18 @@ const cerrarModalEstudiante=document.getElementById("cerrarModalEstudiante")
 
 let estudianteEditandoId = null ;
 
-//Api del clima
+// =============================
+// API DEL CLIMA DOM
+// =============================
 
 const temperatura = document.getElementById("temperatura");
 const descripcionClima = document.getElementById("descripcionClima");
 const iconoClima = document.getElementById("iconoClima");
+
+
+// =============================
+// FUNCION OBTENER CLIMA
+// =============================
 
     async function obtenerClima(){
 
@@ -96,6 +112,10 @@ const iconoClima = document.getElementById("iconoClima");
 }
 
 obtenerClima();
+
+// =============================
+// EVENTO CREAR RUTA
+// =============================
 
 
 crearRuta.addEventListener("click",()=>{
@@ -145,6 +165,10 @@ crearRuta.addEventListener("click",()=>{
     hora.value = "";
     ciudad.value = "";
 });
+
+// =============================
+// RENDERIZAR RUTAS Y ESTUDIANTES
+// =============================
 
 function renderRutas(){
     
@@ -243,6 +267,9 @@ function renderRutas(){
     });
 };
 
+// =============================
+// EVENTO AGREGAR ESTUDIANTE
+// =============================
 
 btnAgregarEstudiante.addEventListener("click",()=>{
 
@@ -305,7 +332,10 @@ btnAgregarEstudiante.addEventListener("click",()=>{
 });
 
 
+// =============================
+// TEMPLATE WEB COMPONENT
 // CARD ESTUDIANTE
+// =============================
 
 
 const template = document.getElementById("templateEstudiante")
@@ -529,7 +559,9 @@ template.innerHTML = `
 `;
 
 
-//CREAMOS EL COMPONENTE 
+// =============================
+// CREACION WEB COMPONENT
+// =============================
 
 
     class CardEstudiante extends HTMLElement {
@@ -583,11 +615,19 @@ template.innerHTML = `
     };
 };
 
+// =============================
+// REGISTRO DEL COMPONENTE
+// =============================
+
     customElements.define(
         "card-estudiante",
         CardEstudiante
 );
 
+
+// =============================
+// EVENTOS MODAL RUTAS
+// =============================
 
 cerrarModalRuta.addEventListener("click", () => {
 
@@ -595,6 +635,9 @@ cerrarModalRuta.addEventListener("click", () => {
 
 });
 
+// =============================
+// GUARDAR CAMBIOS RUTA
+// =============================
 
 guardarCambiosRuta.addEventListener("click", () => {
 
@@ -648,12 +691,19 @@ guardarCambiosRuta.addEventListener("click", () => {
 
 });
 
+// =============================
+// EVENTOS MODAL ESTUDIANTES
+// =============================
+
 cerrarModalEstudiante.addEventListener("click", () => {
 
     modalEditarEstudiante.classList.remove("show");
 
 });
 
+// =============================
+// GUARDAR CAMBIOS ESTUDIANTE
+// =============================
 
 guardarCambiosEstudiante.addEventListener("click", () => {
 
@@ -683,7 +733,7 @@ guardarCambiosEstudiante.addEventListener("click", () => {
 
     const soloNumeros = /^\d+$/;
 
-    if(!soloNumeros.test(grado.value)){
+    if(!soloNumeros.test(editarGradoEstudiante.value)){
         alert("El grado solo puede contener números");
         return;
     }
