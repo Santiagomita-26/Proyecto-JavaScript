@@ -640,3 +640,58 @@ cerrarModalEstudiante.addEventListener("click", () => {
     modalEditarEstudiante.classList.remove("show");
 
 });
+
+
+guardarCambiosEstudiante.addEventListener("click", () => {
+
+    const estudiante = estudiantes.find(
+        estudiante => estudiante.id === estudianteEditandoId
+    );
+
+    if(
+        editarNombreEstudiante.value.trim() === "" ||
+        editarGradoEstudiante.value.trim() === "" ||
+        editarTelefonoEstudiante.value.trim() === ""
+    ){
+        alert("Completa todos los campos");
+        return;
+    }
+
+    if(!estudiante) return;
+
+    const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const telefonoValido = /^\d{10}$/;
+
+    
+     if(!soloLetras.test(editarNombreEstudiante.value)){
+        alert("El nombre solo puede contener letras");
+        return;
+    };
+
+    const gradoNumero = Number(editarGradoEstudiante.value);
+
+    if(gradoNumero < 1 || gradoNumero > 11){
+        alert("El grado debe estar entre 1 y 11");
+        return;
+    };
+
+    if(!telefonoValido.test(editarTelefonoEstudiante.value)){
+        alert("El teléfono debe tener 10 dígitos");
+        return;
+    };
+
+    estudiante.nombre = editarNombreEstudiante.value;
+    estudiante.grado = editarGradoEstudiante.value;
+    estudiante.telefono = editarTelefonoEstudiante.value;
+
+    renderRutas();
+    guardarDatos();
+    modalEditarEstudiante.classList.remove("show");
+
+    
+
+});
+
+console.log(rutas);
+console.log(estudiantes);
+renderRutas();
