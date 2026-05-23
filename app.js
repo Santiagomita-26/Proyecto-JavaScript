@@ -291,3 +291,226 @@ btnAgregarEstudiante.addEventListener("click",()=>{
     
     console.log(estudiante);
 });
+
+// CARD ESTUDIANTE
+
+
+const template = document.getElementById("templateEstudiante")
+
+template.innerHTML = `
+<style>
+
+.card-estudiante{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.03)
+    );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-left: 4px solid #d8b4ff;
+
+    border-radius: 18px;
+
+    padding: 16px 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+    0px 8px 18px rgba(0,0,0,0.22);
+
+    transition: 0.3s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* EFECTO */
+
+.card-estudiante::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    background: rgba(255,192,203,0.08);
+
+    border-radius: 50%;
+
+    top: -20px;
+    right: -10px;
+}
+
+/* HOVER */
+
+.card-estudiante:hover{
+
+    transform: translateY(-2px);
+
+    box-shadow:
+    0px 14px 24px rgba(0,0,0,0.3);
+}
+
+/* DATOS */
+
+.datos-estudiante{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* NOMBRE */
+
+.nombre-estudiante{
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #ffffff;
+
+    margin-bottom: 6px;
+}
+
+/* DETALLES */
+
+.detalle-estudiante{
+
+    font-size: 14px;
+
+    color: #d9d9d9;
+
+    background-color: rgba(255,255,255,0.05);
+
+    padding: 6px 10px;
+
+    border-radius: 10px;
+
+    width: fit-content;
+}
+
+/* BOTONES */
+
+.botones-estudiante{
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* EDITAR */
+
+.editar-estudiante{
+
+    background:
+    linear-gradient(
+        135deg,
+        #b8f2d3,
+        #8fd3c1
+    );
+
+    color: #1d1d1d;
+
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    box-shadow:
+    0px 5px 10px rgba(0,0,0,0.18);
+}
+
+.editar-estudiante:hover{
+
+    transform: translateY(-2px);
+}
+
+/* ELIMINAR */
+
+.eliminar-estudiante{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffb3c6,
+        #ff8fab
+    );
+
+    color: #1d1d1d;
+
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eliminar-estudiante:hover{
+
+    transform: scale(1.05);
+}
+
+</style>
+
+<div class="card-estudiante">
+
+    <div class="datos-estudiante">
+
+        <h2 class="nombre-estudiante"></h2>
+
+        <p class="detalle-estudiante grado"></p>
+
+        <p class="detalle-estudiante telefono"></p>
+
+    </div>
+
+    <div class="botones-estudiante">
+
+        <button class="editar-estudiante">
+            ✎
+        </button>
+        <button class="eliminar-estudiante">
+            ✕
+        </button>
+    </div>
+
+</div>
+`;
