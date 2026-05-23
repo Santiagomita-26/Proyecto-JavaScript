@@ -138,3 +138,100 @@ crearRuta.addEventListener("click",()=>{
     hora.value = "";
     ciudad.value = "";
 });
+
+function renderRutas(){
+    
+    contenedorRutas.innerHTML="";
+    selectRuta.innerHTML="";
+
+    rutas.forEach(ruta =>{
+
+        const card= document.createElement("div");
+
+        card.classList.add("route-card");
+
+        card.innerHTML= `
+        <h2><strong>Ruta:</strong> ${ruta.nombre}</h2>
+        <p><strong>Conductor:</strong> ${ruta.nombreConductor}</p>
+        <p><strong>Hora de salida:</strong> ${ruta.hora}</p>
+        <p><strong>Ciudad:</strong> ${ruta.ciudad}</p>
+        <h3>Estudiantes:</h3>
+
+        <div class="contenedor-estudiantes"></div>
+
+        <div class="card-buttons">
+            <button class="eliminar" data-id="${ruta.id}">Eliminar ruta</button>
+            <button class="editar" data-id="${ruta.id}">Editar ruta</button>
+        </div>
+        
+        
+        
+
+        ` ;
+
+        const contenedorEstudiantes =
+        card.querySelector(".contenedor-estudiantes");
+        const estudiantesRuta =
+        estudiantes.filter(
+            estudiante => estudiante.rutaId === ruta.id
+        );
+
+        estudiantesRuta.forEach(estudiante => {
+
+            const cardEstudiante =
+            document.createElement("card-estudiante");
+
+            cardEstudiante.setAttribute("nombre",estudiante.nombre);
+            cardEstudiante.setAttribute("grado",estudiante.grado);
+            cardEstudiante.setAttribute("telefono", estudiante.telefono)
+            cardEstudiante.setAttribute("id-estudiante",estudiante.id)
+
+            contenedorEstudiantes.appendChild(cardEstudiante);
+                
+        });
+
+
+
+
+        const btnEliminar = card.querySelector(".eliminar");
+        btnEliminar.addEventListener("click", () => {
+            const id = Number(btnEliminar.dataset.id);
+            rutas = rutas.filter(ruta => ruta.id !== id);
+
+            estudiantes = estudiantes.filter(
+            estudiante => estudiante.rutaId !== id
+            );
+            renderRutas();
+            guardarDatos();
+
+        });
+
+        const btnEditar = card.querySelector(".editar");
+
+        btnEditar.addEventListener("click", () => {
+
+            // GUARDAMOS LA ID
+            rutaEditandoId = ruta.id;
+            // LLENAMOS EL FORMULARIO
+            editarNombreRuta.value = ruta.nombre; 
+            editarConductorRuta.value =ruta.nombreConductor;
+            editarHoraRuta.value = ruta.hora;
+            editarCiudadRuta.value = ruta.ciudad;
+            // MOSTRAMOS EL MODAL
+            modalEditarRuta.classList.add("show");
+
+        });
+
+
+
+        contenedorRutas.appendChild(card);
+
+
+        const option = document.createElement("option");
+        option.value = ruta.id; // GUARDAS LA ID
+        option.textContent = ruta.nombre; // MUESTRAS EL NOMBRE
+        selectRuta.appendChild(option);
+
+        console.log(rutas);
+    });
+};
