@@ -693,6 +693,7 @@ guardarCambiosEstudiante.addEventListener("click", () => {
     renderRutas();
     guardarDatos();
     modalEditarEstudiante.classList.remove("show");
+    console.log(estudiantes);
 
     
 
