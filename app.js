@@ -514,3 +514,63 @@ template.innerHTML = `
 
 </div>
 `;
+
+
+//CREAMOS EL COMPONENTE 
+
+
+    class CardEstudiante extends HTMLElement {
+
+    constructor(){
+        super();
+        this.attachShadow({ mode: "open" });
+
+        this.shadowRoot.appendChild(
+            template.content.cloneNode(true)
+        );
+
+    };
+    connectedCallback(){
+
+        const nombre=this.getAttribute("nombre");
+        const grado=this.getAttribute("grado");
+        const telefono=this.getAttribute("telefono")
+
+        this.shadowRoot.querySelector(".nombre-estudiante").textContent="Estudiante: " +  nombre;
+        this.shadowRoot.querySelector(".grado").textContent="Grado: " + grado;
+        this.shadowRoot.querySelector(".telefono").textContent="Telefono: " + telefono ;
+
+            const id=Number(this.getAttribute("id-estudiante"))
+            const btnEliminar =this.shadowRoot.querySelector(".eliminar-estudiante")
+            
+            btnEliminar.addEventListener("click" , ()=> {
+            estudiantes=estudiantes.filter(estudiante=>estudiante.id !==id)
+
+            renderRutas();
+            guardarDatos();
+        })
+        
+        const btnEditar=this.shadowRoot.querySelector(".editar-estudiante");
+        btnEditar.addEventListener("click", ()=>{
+        const estudianteEditar=estudiantes.find(estudiante=>estudiante.id===id);
+
+            if(!estudianteEditar) return;
+            
+            estudianteEditandoId = id;
+
+            editarNombreEstudiante.value=estudianteEditar.nombre;
+            editarGradoEstudiante.value=estudianteEditar.grado;
+            editarTelefonoEstudiante.value=estudianteEditar.telefono;
+
+             modalEditarEstudiante.classList.add("show");
+
+
+        })
+
+    };
+};
+
+    customElements.define(
+        "card-estudiante",
+        CardEstudiante
+);
