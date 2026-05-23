@@ -101,7 +101,7 @@ Las tarjetas de estudiantes se renderizan dinámicamente dentro de cada ruta uti
 Cada tarjeta de estudiante incluye botones para editar y eliminar información de manera interactiva.
 
 ![Botones estudiantes](/img/img4.PNG)
-
+![Botones estudiantes](/img/img5.PNG)
 ---
 
 # 👨‍💻 Autor
