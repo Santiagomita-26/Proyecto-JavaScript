@@ -574,3 +574,69 @@ template.innerHTML = `
         "card-estudiante",
         CardEstudiante
 );
+
+
+cerrarModalRuta.addEventListener("click", () => {
+
+    modalEditarRuta.classList.remove("show");
+
+});
+
+
+guardarCambiosRuta.addEventListener("click", () => {
+
+    const ruta = rutas.find(
+        ruta => ruta.id === rutaEditandoId
+    );
+
+    if(!ruta) return;
+
+
+    const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+    if(
+        editarNombreRuta.value.trim() === "" ||
+        editarConductorRuta.value.trim() === "" ||
+        editarHoraRuta.value.trim() === "" ||
+        editarCiudadRuta.value.trim() === ""
+    ){
+        alert("Completa todos los campos");
+        return;
+    };
+
+    if(!soloLetras.test(editarNombreRuta.value)){
+        alert("El nombre de la ruta solo puede tener letras");
+        return;
+    };
+
+    if(!soloLetras.test(editarConductorRuta.value)){
+        alert("El conductor solo puede tener letras");
+        return;
+    };
+
+    if(!soloLetras.test(editarCiudadRuta.value)){
+        alert("La ciudad solo puede tener letras");
+        return;
+    };
+
+    ruta.nombre = editarNombreRuta.value;
+    ruta.nombreConductor =
+    editarConductorRuta.value;
+
+    ruta.hora = editarHoraRuta.value;
+    ruta.ciudad = editarCiudadRuta.value;
+
+    // VOLVER A RENDERIZAR
+    renderRutas();
+    guardarDatos();
+
+    // CERRAR MODAL
+    modalEditarRuta.classList.remove("show");
+
+});
+
+cerrarModalEstudiante.addEventListener("click", () => {
+
+    modalEditarEstudiante.classList.remove("show");
+
+});
