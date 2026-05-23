@@ -1,6 +1,13 @@
+"use strict"
 
+let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
+let rutas = JSON.parse(localStorage.getItem("rutas")) || [];
 
+function guardarDatos(){
+    localStorage.setItem("estudiantes" , JSON.stringify(estudiantes));  
+    localStorage.setItem("rutas" , JSON.stringify(rutas));    
 
+}
 
 
 //Formulario de RUTAS
@@ -31,6 +38,8 @@ const editarCiudadRuta=document.getElementById("editarCiudadRuta");
 const guardarCambiosRuta=document.getElementById("guardarCambiosRuta");
 const cerrarModalRuta=document.getElementById("cerrarModalRuta");
 
+let rutaEditandoId = null ;
+
 
 //Formulario EDITAR ESTUDIANTES
 
@@ -41,8 +50,7 @@ const editarTelefonoEstudiante=document.getElementById("editarTelefonoEstudiante
 const guardarCambiosEstudiante=document.getElementById("guardarCambiosEstudiante")
 const cerrarModalEstudiante=document.getElementById("cerrarModalEstudiante")
 
-
-
+let estudianteEditandoId = null ;
 
 //Api del clima
 
@@ -88,7 +96,6 @@ const iconoClima = document.getElementById("iconoClima");
 }
 
 obtenerClima();
-
 
 
 crearRuta.addEventListener("click",()=>{
@@ -237,8 +244,6 @@ function renderRutas(){
 };
 
 
-
-
 btnAgregarEstudiante.addEventListener("click",()=>{
 
     const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -291,6 +296,7 @@ btnAgregarEstudiante.addEventListener("click",()=>{
     
     console.log(estudiante);
 });
+
 
 // CARD ESTUDIANTE
 
