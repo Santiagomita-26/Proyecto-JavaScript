@@ -88,3 +88,53 @@ const iconoClima = document.getElementById("iconoClima");
 }
 
 obtenerClima();
+
+
+
+crearRuta.addEventListener("click",()=>{
+
+    const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+    if(!soloLetras.test(nombreRuta.value)){
+        alert("El nombre de la ruta solo puede tener letras");
+        return;
+    }
+
+    if(!soloLetras.test(nombreConductor.value)){
+        alert("El conductor solo puede tener letras");
+        return;
+    }
+
+    if(!soloLetras.test(ciudad.value)){
+        alert("La ciudad solo puede tener letras");
+        return;
+    }
+    
+    if(
+        nombreRuta.value.trim()==="" ||
+        nombreConductor.value.trim()==="" ||
+        hora.value.trim()==="" ||
+        ciudad.value.trim()===""
+    ){
+        alert("Completa todos los campos");
+        return;
+    };
+
+    const ruta = {
+        id:Date.now(),
+        nombre: nombreRuta.value,
+        nombreConductor: nombreConductor.value,
+        hora: hora.value,
+        ciudad: ciudad.value
+    };
+
+    rutas.push(ruta);
+    guardarDatos();
+    
+    renderRutas();
+
+    nombreRuta.value = "";
+    nombreConductor.value = "";
+    hora.value = "";
+    ciudad.value = "";
+});
