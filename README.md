@@ -76,7 +76,7 @@ También puedes utilizar la extensión **Live Server** de Visual Studio Code par
 
 En esta sección se muestra el encabezado principal del sistema, el módulo del clima en tiempo real y los formularios para la creación de rutas y estudiantes.
 
-![Vista principal](/img/img1.png)
+![Vista principal](/img/img1.PNG)
 
 ---
 
@@ -84,7 +84,7 @@ En esta sección se muestra el encabezado principal del sistema, el módulo del 
 
 Aquí se visualizan las rutas escolares registradas dinámicamente dentro del sistema.
 
-![Rutas creadas](/img/img2.png)
+![Rutas creadas](/img/img2.PNG)
 
 ---
 
@@ -92,7 +92,7 @@ Aquí se visualizan las rutas escolares registradas dinámicamente dentro del si
 
 Las tarjetas de estudiantes se renderizan dinámicamente dentro de cada ruta utilizando Web Components y Shadow DOM.
 
-![Cards de estudiantes](/img/img3.png)
+![Cards de estudiantes](/img/img3.PNG)
 
 ---
 
@@ -100,7 +100,7 @@ Las tarjetas de estudiantes se renderizan dinámicamente dentro de cada ruta uti
 
 Cada tarjeta de estudiante incluye botones para editar y eliminar información de manera interactiva.
 
-![Botones estudiantes](/img/img4.png)
+![Botones estudiantes](/img/img4.PNG)
 
 ---
 
