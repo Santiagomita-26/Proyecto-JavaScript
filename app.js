@@ -235,3 +235,59 @@ function renderRutas(){
         console.log(rutas);
     });
 };
+
+
+
+
+btnAgregarEstudiante.addEventListener("click",()=>{
+
+    const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const telefonoValido = /^\d{10}$/;
+    
+    if(
+        nombreEstudiante.value.trim()==="" ||
+        grado.value.trim()==="" ||
+        telefono.value.trim()==="" ||
+        selectRuta.value.trim()==="" 
+    ){
+        alert("Completa todos los campos");
+        return;
+    };
+
+    if(!soloLetras.test(nombreEstudiante.value)){
+        alert("El nombre solo puede tener letras");
+        return;
+    }
+
+    const gradoNumero = Number(grado.value);
+
+    if(gradoNumero < 1 || gradoNumero > 11){
+        alert("El grado debe estar entre 1 y 11");
+        return;
+    }
+
+    if(!telefonoValido.test(telefono.value)){
+        alert("El teléfono debe tener 10 dígitos");
+        return;
+    }
+
+    const estudiante = {
+        id: Date.now(),
+        nombre: nombreEstudiante.value,
+        grado: grado.value,
+        telefono: telefono.value,
+        rutaId: Number(selectRuta.value)
+    };
+
+    estudiantes.push(estudiante);
+    guardarDatos();
+    renderRutas();
+
+
+    nombreEstudiante.value = "";
+    grado.value = "";
+    telefono.value="";
+    selectRuta.value = "";
+    
+    console.log(estudiante);
+});
