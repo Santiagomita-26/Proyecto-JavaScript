@@ -209,15 +209,23 @@ function renderRutas(){
 
         estudiantesRuta.forEach(estudiante => {
 
-            const cardEstudiante =
-            document.createElement("card-estudiante");
+        const cardEstudiante =
+        document.createElement("card-estudiante");
 
-            cardEstudiante.setAttribute("nombre",estudiante.nombre);
-            cardEstudiante.setAttribute("grado",estudiante.grado);
-            cardEstudiante.setAttribute("telefono", estudiante.telefono)
-            cardEstudiante.setAttribute("id-estudiante",estudiante.id)
+        cardEstudiante.setAttribute("nombre",estudiante.nombre);
+        cardEstudiante.setAttribute("grado",estudiante.grado);
+        cardEstudiante.setAttribute("telefono", estudiante.telefono)
+        cardEstudiante.setAttribute("id-estudiante",estudiante.id)
 
-            contenedorEstudiantes.appendChild(cardEstudiante);
+        contenedorEstudiantes.appendChild(cardEstudiante);
+
+        cardEstudiante.addEventListener("eliminar-estudiante", (event) => {
+        const idEliminar = event.detail.id; estudiantes = estudiantes.filter(estudiante => estudiante.id !== idEliminar);
+
+                guardarDatos();
+                 renderRutas();
+                }
+            );
                 
         });
 
@@ -588,12 +596,17 @@ template.innerHTML = `
             const id=Number(this.getAttribute("id-estudiante"))
             const btnEliminar =this.shadowRoot.querySelector(".eliminar-estudiante")
             
-            btnEliminar.addEventListener("click" , ()=> {
-            estudiantes=estudiantes.filter(estudiante=>estudiante.id !==id)
+            btnEliminar.addEventListener("click", () => {
 
-            renderRutas();
-            guardarDatos();
-        })
+                // =============================
+                // Custom Event 
+                // =============================
+
+            this.dispatchEvent(new CustomEvent("eliminar-estudiante", { detail: { id }, bubbles: true, composed: true })
+    );
+
+});
+        
         
         const btnEditar=this.shadowRoot.querySelector(".editar-estudiante");
         btnEditar.addEventListener("click", ()=>{
