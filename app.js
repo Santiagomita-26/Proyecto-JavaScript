@@ -6,6 +6,7 @@
 
 let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
 let rutas = JSON.parse(localStorage.getItem("rutas")) || [];
+let asistencia = JSON.parse(localStorage.getItem("asistencia")) || [];
 
 
 // =============================
@@ -15,6 +16,7 @@ let rutas = JSON.parse(localStorage.getItem("rutas")) || [];
 function guardarDatos(){
     localStorage.setItem("estudiantes" , JSON.stringify(estudiantes));  
     localStorage.setItem("rutas" , JSON.stringify(rutas));    
+    localStorage.setItem("asistencia" , JSON.stringify(asistencia));
 
 }
 
@@ -60,6 +62,8 @@ const guardarCambiosEstudiante=document.getElementById("guardarCambiosEstudiante
 const cerrarModalEstudiante=document.getElementById("cerrarModalEstudiante")
 
 let estudianteEditandoId = null ;
+
+const btnAsistencia=document.getElementById("btnAsistencia");
 
 // =============================
 // API DEL CLIMA DOM
@@ -478,6 +482,7 @@ template.innerHTML = `
         #8fd3c1
     );
 
+
     color: #1d1d1d;
 
     border: none;
@@ -496,6 +501,8 @@ template.innerHTML = `
     box-shadow:
     0px 5px 10px rgba(0,0,0,0.18);
 }
+
+
 
 .editar-estudiante:hover{
 
@@ -539,6 +546,82 @@ template.innerHTML = `
     transform: scale(1.05);
 }
 
+
+/* ASISTENCIA */
+
+.asistencia-estudiante{
+
+    background:
+    linear-gradient(
+        135deg,
+        #b8f2d3,
+        #8fd3c1
+    );
+
+    color: #1d1d1d;
+
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.asistencia-estudiante:hover{
+
+    transform: scale(1.05);
+}
+
+/* X-ASISTENCIA */
+
+.Xasistencia-estudiante{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffb3c6,
+        #ff8fab
+    );
+
+    color: #1d1d1d;     
+
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Xasistencia-estudiante:hover{
+
+    transform: scale(1.05);
+}
+
+
 </style>
 
 <div class="card-estudiante">
@@ -560,6 +643,14 @@ template.innerHTML = `
         </button>
         <button class="eliminar-estudiante">
             ✕
+        </button>
+
+        <button class="asistencia-estudiante">
+            A
+        </button>
+
+        <button class="Xasistencia-estudiante">
+            X-A
         </button>
     </div>
 
@@ -625,6 +716,24 @@ template.innerHTML = `
 
         })
 
+        const btnAsistencia = this.shadowRoot.querySelector(".asistencia-estudiante");
+        btnAsistencia.addEventListener("click", () => {
+            
+            alert("Se confirmo la asistencia para " + nombre);
+
+           const asistenciaEstudiante = {
+                id: Date.now(),
+                nombre: nombre,
+                grado: grado,
+                telefono: telefono,
+                rutaId: Number(this.getAttribute("ruta-id"))
+            };
+
+            asistencia.push(asistenciaEstudiante);
+            guardarDatos();
+            console.log(asistencia);
+        });
+       
     };
 };
 
